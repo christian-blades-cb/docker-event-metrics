@@ -11,12 +11,12 @@ import (
 )
 
 var opts struct {
-	StatsDHost          string       `description:"where to send statsd metrics" short:"s" long:"statsd-host" default:"localhost:8125"`
-	StatsDPrefix        string       `description:"prefix for metrics in statsd" long:"statsd-prefix" default:"docker."`
-	StatsDPurgeInterval func(string) `description:"frequency (in seconds) to send metrics to the statsd collector" long:"statsd-purge-frequency" default:"15s"`
+	StatsDHost          string       `description:"where to send statsd metrics" short:"s" long:"statsd-host" default:"localhost:8125" env:"STATSD_HOST"`
+	StatsDPrefix        string       `description:"prefix for metrics in statsd" long:"statsd-prefix" default:"docker." env:"STATSD_PREFIX"`
+	StatsDPurgeInterval func(string) `description:"frequency (in seconds) to send metrics to the statsd collector" long:"statsd-purge-frequency" default:"15s" env:"STATSD_FREQUENCY"`
 	statsdFrequency     time.Duration
 
-	DockerEndpoint string `description:"where to find docker" long:"docker-endpoint" default:"unix:/var/run/docker.sock"`
+	DockerEndpoint string `description:"where to find docker" long:"docker-endpoint" default:"unix:/var/run/docker.sock" env:"DOCKER_ENDPOINT"`
 }
 
 var stats *statsd.StatsdBuffer
