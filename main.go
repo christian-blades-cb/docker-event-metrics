@@ -16,7 +16,7 @@ var opts struct {
 	StatsDPurgeInterval func(string) `description:"frequency (in seconds) to send metrics to the statsd collector" long:"statsd-purge-frequency" default:"15s" env:"STATSD_FREQUENCY"`
 	statsdFrequency     time.Duration
 
-	DockerEndpoint string `description:"where to find docker" long:"docker-endpoint" default:"unix:/var/run/docker.sock" env:"DOCKER_ENDPOINT"`
+	DockerEndpoint string `description:"where to find docker" long:"docker-endpoint" default:"unix:///var/run/docker.sock" env:"DOCKER_ENDPOINT"`
 }
 
 var stats *statsd.StatsdBuffer
