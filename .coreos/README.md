@@ -17,7 +17,7 @@ This directory should be added to the root of your project repo and checked in.
 ## Deployment ##
 
 ```shell
-fleetctl submit docker-event-metrics-{app,discovery}@.service
-cat docker-event-metrics-app.env | etcdctl set /environments/docker-event-metrics-app
-fleetctl start docker-event-metrics-{app,discovery}@1
+fleetctl submit docker-event-metrics.service
+cat docker-event-metrics-app.env | etcdctl set /environments/docker-event-metrics
+fleetctl start docker-event-metrics
 ```
