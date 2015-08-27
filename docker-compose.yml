@@ -1,0 +1,25 @@
+events:
+  image: christianbladescb/docker-event-metrics
+  volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+  links:
+    - statsd
+  command: -s statsd:8125
+statsd:
+  image: christianbladescb/statsd-influxdb
+  links:
+    - influxdb
+  environment:
+    - INFLUXDB_HOST=influxdb
+    - INFLUXDB_VERSION=0.9
+    - INFLUXDB_DATABASE=docker
+influxdb:
+  image: tutum/influxdb
+  environment:
+    - PRE_CREATE_DB=docker
+grafana:
+  image: grafana/grafana
+  ports:
+    - 3000:3000
+  links:
+    - influxdb
